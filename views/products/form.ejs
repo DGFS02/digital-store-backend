@@ -5,38 +5,33 @@
     <link rel="stylesheet" href="/milligram/milligram.min.css" />
   </head>
   <body>
-    <h2>Criação de produtos</h2>
-    <form id="product-form">
-      <input name="productId" placeholder="Id do produto" />
-      <input name="productName" placeholder="Nome do produto" />
-      <input name="productType" placeholder="Tipo do produto" />
-      <input name="productdiscount" placeholder="Desconto do produto" />
-      <input name="productPrice" placeholder="Preço do produto" />
-      <input name="productImage" placeholder="Imagem do produto" />
-      <div>
-        <button type="submit">Cadastrar</button>
-      </div>
-    </form>
+    <div class="container">
+      <h2>Criação de produtos</h2>
+      <form id="product-form">
+        <input name="productId" placeholder="Id do produto" />
+        <input name="productName" placeholder="Nome do produto" />
+        <input name="productType" placeholder="Tipo do produto" />
+        <input name="productdiscount" placeholder="Desconto do produto" />
+        <input name="productPrice" placeholder="Preço do produto" />
+        <input name="productImage" placeholder="Imagem do produto" />
+        <div>
+          <button type="submit">Cadastrar</button>
+        </div>
+      </form>
+    </div>
     <script>
       function sendDataForm(event) {
         console.log(event);
         event.preventDefault();
-        let formValues = new FormData(event.target);
-        let sendData = {
-          productId: formValues.get("productId"),
-          productName: formValues.get("productName"),
-          productType: formValues.get("productType"),
-          productdiscount: formValues.get("productdiscount"),
-          productPrice: formValues.get("productPrice"),
-          productImage: formValues.get("productImage"),
-        };
+        const formData = new FormData(event.target);
+        const formDataJSON = Object.fromEntries(formData);
 
         fetch("/products", {
           method: "POST",
           headers: {
             "content-type": "application/json",
           },
-          body: JSON.stringify(sendData),
+          body: JSON.stringify(formDataJSON),
         })
           .then((response) => response.json())
           .then((result) => {
