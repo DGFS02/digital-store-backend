@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/milligram/milligram.min.css" />
+  </head>
+  <body>
+    <h2>Criação de produtos</h2>
+    <form id="product-form">
+      <input name="productId" placeholder="Id do produto" />
+      <input name="productName" placeholder="Nome do produto" />
+      <input name="productType" placeholder="Tipo do produto" />
+      <input name="productdiscount" placeholder="Desconto do produto" />
+      <input name="productPrice" placeholder="Preço do produto" />
+      <input name="productImage" placeholder="Imagem do produto" />
+      <div>
+        <button type="submit">Cadastrar</button>
+      </div>
+    </form>
+    <script>
+      function sendDataForm(event) {
+        console.log(event);
+        event.preventDefault();
+        let formValues = new FormData(event.target);
+        let sendData = {
+          productId: formValues.get("productId"),
+          productName: formValues.get("productName"),
+          productType: formValues.get("productType"),
+          productdiscount: formValues.get("productdiscount"),
+          productPrice: formValues.get("productPrice"),
+          productImage: formValues.get("productImage"),
+        };
+
+        fetch("/products", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(sendData),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log("Success:", result);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+
+      document
+        .getElementById("product-form")
+        .addEventListener("submit", sendDataForm);
+    </script>
+  </body>
+</html>
