@@ -19,5 +19,17 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
-  }
+  },
+  "description": "Criação do Banco de Dados\r Para realizar a criação do banco de dados:\r 1º - Atualizar o **password** no arquivo config/config.json conforme a senha cadastrada no MYSQL",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DGFS02/digital-store-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DGFS02/digital-store-backend/issues"
+  },
+  "homepage": "https://github.com/DGFS02/digital-store-backend#readme"
 }
