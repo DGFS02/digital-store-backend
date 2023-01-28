@@ -4,9 +4,9 @@ const router = express.Router();
 router.post('/products', function(req, res, next) {
   const { Product } = require('../models');
   const newProduct = Product.build({
-    name: 'asdasd',
-    price: 312312,
-    description: '312312',
+    name: req.body.name,
+    price: req.body.price,
+    description: req.body.description,
   })
 
   newProduct.save().then((createdProduct) => {
