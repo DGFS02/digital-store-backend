@@ -2,9 +2,9 @@
 
 ### Setup Versions
 * Sequelize CLI:
-** Node: 16.17.1 
-** CLI: 6.5.2
-** ORM: 6.3.5
+  * Node: 16.17.1 
+  * CLI: 6.5.2
+  * ORM: 6.3.5
 
 ##### Install dependences
 ```sh
