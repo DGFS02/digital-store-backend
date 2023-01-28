@@ -1,35 +1,17 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
+var { Product } = require("../models");
 
-
-router.get('/products', function(req, res, next) {
-  res.json([
-    {
-        "productId": 1,
-        "productName": "Produto 1"
-        },
-        {
-        "productId": 2,
-        "productName": "Produto 2"
-        },
-        {
-        "productId": 3,
-        "productName": "Produto 3"
-        },
-        {
-        "productId": 4,
-        "productName": "Produto 4"
-        },
-        {
-        "productId": 5,
-        "productName": "Produto 5"
-        },
-        {
-        "productId": 6,
-        "productName": "Produto 6"
-        }
-  ]);
+router.get("/products", async (req, res, next) => {
+  const products = await Product.findAll();
+  res.json(products);
 });
 
+router.get("/products/:id", async (req, res, next) => {
+  const productId = req.params.id;
+  const product = await Product.findByPk(productId)
+
+  res.json(product);
+});
 
 module.exports = router;
