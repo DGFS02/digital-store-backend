@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require('express');
 const router = express.Router();
 
@@ -16,11 +15,6 @@ router.post('/products', function(req, res, next) {
   })
 
 });
-
-=======
-var express = require('express');
-var router = express.Router();
-
 
 router.get('/products', function(req, res, next) {
   res.json([
@@ -52,5 +46,4 @@ router.get('/products', function(req, res, next) {
 });
 
 
->>>>>>> main
 module.exports = router;
