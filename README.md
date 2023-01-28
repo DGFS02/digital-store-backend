@@ -1,9 +1,39 @@
-Criação do Banco de Dados
-Para realizar a criação do banco de dados:
-1º - Atualizar o **password** no arquivo config/config.json conforme a senha cadastrada no MYSQL
+# DIGITAL STORE
 
-![image](https://user-images.githubusercontent.com/106355267/212491088-75f796d8-ee08-4ed2-ad51-0e011578992c.png)
+### Setup Versions
+* Sequelize CLI:
+  * Node: 16.17.1 
+  * CLI: 6.5.2
+  * ORM: 6.3.5
 
-2º Rodar no terminal o script para criação do banco de dados: npx sequelize-cli db:create
+##### Install dependences
+```sh
+$ npm i
+```
 
-3º: Rodar no terminal o script para criação da tabela products: npx sequelize-cli db:migrate
+##### Database config.json 
+```json
+  {
+    "development": {
+    "username": "root",
+    "password": "1234",
+    "database": "digitalStore",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+```
+
+##### Database create 
+```sh
+$ npx sequelize-cli db:create
+```
+
+##### Database migrate 
+```sh
+$ npx sequelize-cli db:migrate
+```
+
+##### Run
+```sh
+$ npm start
+```

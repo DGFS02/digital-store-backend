@@ -12,6 +12,7 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "milligram": "^1.4.1",
     "morgan": "~1.9.1",
     "mysql2": "^3.0.1",
     "sequelize": "^6.28.0",
@@ -19,17 +20,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
-  },
-  "description": "Criação do Banco de Dados\r Para realizar a criação do banco de dados:\r 1º - Atualizar o **password** no arquivo config/config.json conforme a senha cadastrada no MYSQL",
-  "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DGFS02/digital-store-backend.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DGFS02/digital-store-backend/issues"
-  },
-  "homepage": "https://github.com/DGFS02/digital-store-backend#readme"
+  }
 }
