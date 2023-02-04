@@ -14,4 +14,16 @@ router.get("/products/:id", async (req, res, next) => {
   res.json(product);
 });
 
+
+
+// router.post("/login", async (req, res) => {
+//   const { username, password } = req.body;
+
+//   req.session.user = {
+//     username: username
+//   };
+
+//   res.redirect("/");
+// });
+
 module.exports = router;
