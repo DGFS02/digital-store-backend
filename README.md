@@ -11,16 +11,10 @@
 $ npm i
 ```
 
-##### Database config.json 
-```json
-  {
-    "development": {
-    "username": "root",
-    "password": "1234",
-    "database": "digitalStore",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
+##### Create .env file 
+```
+Create an file .env using the .env.example as an example.
+In the .env file change the password to the MYQSL Workbench password.
 ```
 
 ##### Database create 
