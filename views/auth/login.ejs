@@ -1,11 +1,9 @@
-
-
 <%- include('../partials/_header') %>
 <h1>Login Page</h1>
-<form id="login-form" >
-  <input type="email" name="username" placeholder="Username">
-  <input type="password" name="password" placeholder="Password">
-  <input type="submit" value="Submit">
+<form id="login-form">
+  <input type="email" name="username" placeholder="Username" />
+  <input type="password" name="password" placeholder="Password" />
+  <input type="submit" value="Submit" />
 </form>
 <script>
   function sendDataForm(event) {
@@ -14,25 +12,22 @@
     const formData = new FormData(event.target);
     const formDataJSON = Object.fromEntries(formData);
 
-
-    fetch("/login", {
-      method: "POST",
+    fetch('/login', {
+      method: 'POST',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify(formDataJSON),
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("Success:", result);
+        console.log('Success:', result);
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error('Error:', error);
       });
   }
 
-  document
-    .getElementById("login-form")
-    .addEventListener("submit", sendDataForm);
+  document.getElementById('login-form').addEventListener('submit', sendDataForm);
 </script>
-<%- include('../partials/_footer') %>
+<%= include('../partials/_footer') %>
