@@ -20,7 +20,7 @@ router.get('/products', async (req, res, next) => {
 
 router.get('/products/:id', async (req, res, next) => {
   const productId = req.params.id;
-  const product = await Product.findByPk(productId)
+  const product = await Product.findByPk(productId);
   res.json(product);
 });
 
