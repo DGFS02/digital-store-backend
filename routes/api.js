@@ -28,4 +28,19 @@ router.post('/products', function (req, res, next) {
   });
 });
 
+/* Rota para atualizar o produto*/
+router.put('/products/:id', async function (req, res, next) {
+  const product = await Product.findByPk(req.params.id);
+
+  product.set({
+    name: req.body.name,
+    price: req.body.price,
+    description: req.body.description,
+  });
+
+  product.save();
+
+  res.json('ok');
+});
+
 module.exports = router;
