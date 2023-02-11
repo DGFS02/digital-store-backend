@@ -7,9 +7,14 @@ router.get('/products', function (req, res, next) {
 });
 
 
-/* Route para a página de listagem */
+/* Rota para a página de listagem de produto */
 router.get("/products/list-all", function (req, res, next) {
   res.render("products/listAll", { title: "Listagem de Produtos" });
+});
+
+/* Rota para a página de update de produto */
+router.get("/products/edit", function (req, res, next) {
+  res.render("products/edit", { title: "Editar Produtos" });
 });
 
 module.exports = router;
