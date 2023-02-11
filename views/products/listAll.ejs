@@ -1,68 +1,66 @@
 <%- include('../partials/_header') %>
 
 <header class="container">
-    <h2> 
-        <%= title %>  
-    </h2>
+  <h2><%= title %></h2>
 </header>
 
 <main class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Preço</th>
-                <th>Ação</th>
-            </tr>
-        </thead>
+    <tbody id="list-products"></tbody>
+  </table>
 
-        <tbody id="list-products">
-            
-        </tbody>
-    </table>
-
-    <button class="button button-clear"> Voltar </button> 
-    
-
+  <button class="button button-clear">Voltar</button>
 </main>
 
 <script>
-    
-    const loadProductList = () => {
-        const handleData = (products) => {
-            const productListField = document.querySelector("#list-products");
+  const loadProductList = () => {
+    const handleData = (products) => {
+      const productListField = document.querySelector('#list-products');
 
-            const listProduct = products.map(product => ` 
+      const listProduct = products.map(
+        (product) => ` 
                 <tr> 
                     <td> ${product.id} </td>
-                    <td> ${product.name} </td>
-                    <td> R$${product.price} </td>
+                    <td> ${caseNull(product.name)} </td>
+                    <td> R$${caseNull(product.price)} </td>
                     <td> 
                         <button class="button"> Editar </button>
                         <button class="button button-outline"> Deletar </button>
                     </td>
                 </tr>
-            `)
+            `
+      );
 
+      if (products.length > 0) {
+        productListField.innerHTML = listProduct.join('');
+      } else {
+        console.log('Lista de produtos vazia');
+      }
+    };
 
-            if(products.length > 0) {
-                productListField.innerHTML = listProduct.join("");
-            }else{
-                console.log("Lista de produtos vazia")
-            }
-        }
+    fetch('/api/products').then((response) => {
+      response.json().then(handleData);
+    });
+  };
 
-       
-
-        fetch("/api/products").then((response) => {
-            response.json().then(handleData)
-        })
+  const caseNull = (data) => {
+    if (data == null) {
+      return ' ---';
+    } else {
+      return data;
     }
-       
-    loadProductList()
-    
+  };
+
+  loadProductList();
 </script>
 
 <%- include('../partials/_footer') %>
