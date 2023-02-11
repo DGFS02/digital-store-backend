@@ -13,7 +13,7 @@ router.get("/products/list-all", function (req, res, next) {
 
 //TESTE
 router.get("/", function (req, res, next) {
-  res.render("admin");
+  res.render("admin", { title: "Admin"});
 });
 
 module.exports = router;

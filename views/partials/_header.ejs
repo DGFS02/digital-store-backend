@@ -3,8 +3,47 @@
   <head>
     <title><%= title %></title>
     <link rel="stylesheet" href="/milligram/milligram.min.css" />
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .header{
+        display: flex;
+        justify-content: center;
+        height: 60px;
+        background-color: #666666;
+      }
+      .main-container {
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .aside{
+        width: 10%;
+        height: calc(100vh - 60px);
+        background-color: #666666;
+      }
+      .aside nav ul li{
+        list-style: none;
+        margin-left: 10px;
+      }
+    </style>
   </head>
   <body>
-    <div class="container"></div>
-  </body>
-</html>
+    <header class="header">
+      <h1>admin</h1>
+    </header>
+    <div class="main-container">
+      <aside class="aside">
+        <nav>
+          <ul>
+            <li><a href="">Lista de produtos</a></li>
+            <li><a href="">Novo produto</a></li>
+            <li><a href="">Lista de usuários</a></li>
+            <li><a href="">Novo usuário</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <div class="container">
