@@ -12,8 +12,10 @@
       .header{
         display: flex;
         justify-content: center;
+        align-items: center;
         height: 60px;
         background-color: #666666;
+        
       }
       .main-container {
         display: flex;
@@ -28,19 +30,34 @@
       .aside nav ul li{
         list-style: none;
         margin-left: 10px;
+        
       }
+      a{
+        color: #D1D1D1;
+    
+      }
+      a:hover{
+        color: white;
+        text-shadow: 2px 2px 4px #000000;
+      }
+      .title-admin{
+        color: #FFF;
+        font-size: 40px;
+        margin: 0;
+      }
+      
     </style>
   </head>
   <body>
     <header class="header">
-      <h1>admin</h1>
+      <h1 class="title-admin">ADMIN</h1>
     </header>
     <div class="main-container">
       <aside class="aside">
         <nav>
           <ul>
-            <li><a href="">Lista de produtos</a></li>
-            <li><a href="">Novo produto</a></li>
+            <li><a href="/admin/products/list-all">Lista de produtos</a></li>
+            <li><a href="/admin/products/">Novo produto</a></li>
             <li><a href="">Lista de usuários</a></li>
             <li><a href="">Novo usuário</a></li>
           </ul>
