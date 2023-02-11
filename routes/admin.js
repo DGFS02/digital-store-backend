@@ -6,9 +6,8 @@ router.get('/products', function (req, res, next) {
   res.render('products/form', { title: 'Products' });
 });
 
-/* Route para a página de listagem */
-router.get('/products/list-all', function (req, res, next) {
-  res.render('products/listAll', { title: 'Listagem de Produtos' });
+router.get('/login', function (req, res, next) {
+  res.render('auth/login', { title: 'Login' });
 });
 
 module.exports = router;
