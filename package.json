@@ -7,6 +7,7 @@
     "format": "onchange \"**/*\" -- prettier --write {{file}}"
   },
   "dependencies": {
+    "body-parser": "^1.20.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
@@ -21,8 +22,8 @@
   "devDependencies": {
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.20",
+    "onchange": "^7.1.0",
     "prettier": "^2.8.3",
-    "sequelize-cli": "^6.5.2",
-    "onchange": "^7.1.0"
+    "sequelize-cli": "^6.5.2"
   }
 }
