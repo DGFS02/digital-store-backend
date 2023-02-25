@@ -1,0 +1,41 @@
+<%- include('./partials/_header') %>
+  <h2>Registro De Usuário</h2>
+  <form id="register-form">
+    <input type="text" name="name" placeholder="Nome Completo" required />
+    <input name="email" placeholder="E-mail" required />
+    <input type="password" name="password" placeholder="Senha" required />
+    <select name="role">
+      <option value="user">Cliente</option>
+      <option value="adm" selected>Administrador</option>
+    </select>
+    <div>
+      <button type="submit">Cadastrar</button>
+    </div>
+  </form>
+  <script>
+    function sendDataForm(event) {
+      console.log(event);
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const formDataJSON = Object.fromEntries(formData);
+
+      fetch("/api/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formDataJSON),
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log("Success:", result);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+    document
+      .getElementById("register-form")
+      .addEventListener("submit", sendDataForm);
+  </script>
+  <%- include('./partials/_footer') %>
