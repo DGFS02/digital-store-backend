@@ -9,9 +9,7 @@
     <input type="hidden" name="id" id="id" placeholder="ID do Produto" value="<%= product.id %>" />
     <input type="text" name="name" id="name" placeholder="Nome do Produto" value="<%= product.name %>" />
     <input type="number" name="price" id="price" placeholder="Preço do Produto" value="<%= product.price %>" />
-    <textarea name="description" id="description" cols="30" rows="10" placeholder="Descrição do Produto">
- <%= product.description %> </textarea
-    >
+    <textarea name="description" id="description" cols="30" rows="10" placeholder="Descrição do Produto"><%= product.description %></textarea>
 
     <button type="submit">Atualizar</button>
     <a href="/admin/products/list-all" class="button button-outline">Voltar</a>
@@ -34,12 +32,22 @@
       },
       body: JSON.stringify(formDataJSON),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        console.log(response)
+        if (response.ok) {
+          return response.json()
+        }
+
+        throw new Error(response.statusText)
+      })
       .then((result) => {
-        console.log('Success:', result);
+        swal("Atualizado!", "As informações foram atualizadas", "success");
       })
       .catch((error) => {
-        console.error('Error:', error);
+        swal("Erro!", "As informações NÃO foram atualizadas.", "error")
+        .then(() => {
+          swal(`Error: {${error}}`);
+        });
       });
   };
 
