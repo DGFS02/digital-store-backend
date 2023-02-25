@@ -1,7 +1,26 @@
 var express = require('express');
 var router = express.Router();
-var { Product } = require('../models');
-var { User, Token } = require('../models');
+
+var { Product, User, Token } = require('../models');
+
+router.get('/users', async (req, res, nes) => {
+  const users = await User.findall();
+  res.json(users);
+});
+
+router.post('/users', function (req, res, next) {
+  const { User } = require('../models');
+  const newUser = User.build({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    role: req.body.role,
+  });
+
+  newUser.save();
+
+  res.send('ok');
+});
 
 router.get('/products', async (req, res, next) => {
   const products = await Product.findAll();
@@ -11,7 +30,6 @@ router.get('/products', async (req, res, next) => {
 router.get('/products/:id', async (req, res, next) => {
   const productId = req.params.id;
   const product = await Product.findByPk(productId);
-
   res.json(product);
 });
 
