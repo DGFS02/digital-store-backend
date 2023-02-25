@@ -33,8 +33,8 @@
                     <td> ${caseNull(product.name)} </td>
                     <td> R$${caseNull(product.price)} </td>
                     <td> 
-                        <a class="button" href="/admin/products/${product.id}/edit"> Editar </a>
-                        <a class="button button-outline"> Deletar </a>
+                      <a class="button" href="/admin/products/${product.id}/edit"> Editar </a>
+                      <button class="button button-outline delete-product" data-item-id=${product.id}>Deletar</button>
                     </td>
                 </tr>
             `
@@ -42,6 +42,17 @@
 
       if (products.length > 0) {
         productListField.innerHTML = listProduct.join('');
+
+        document.querySelectorAll('.delete-product').forEach((element) => {
+          element.addEventListener('click', () => {
+            // element.getAttribute('data-item-id')
+            swal({
+              type: 'success',
+              message: 'asdasdasdasd'
+            })
+            
+          })
+        })
       } else {
         console.log('Lista de produtos vazia');
       }
