@@ -1,0 +1,57 @@
+<%- include('../partials/_header') %>
+
+<header class="container">
+  <h2><%= title %> <%= product.id %></h2>
+</header>
+
+<main class="container">
+  <form action="" id="product-form">
+    <input type="hidden" name="id" id="id" placeholder="ID do Produto" value="<%= product.id %>" />
+    <input type="text" name="name" id="name" placeholder="Nome do Produto" value="<%= product.name %>" />
+    <input type="number" name="price" id="price" placeholder="Preço do Produto" value="<%= product.price %>" />
+    <textarea name="description" id="description" cols="30" rows="10" placeholder="Descrição do Produto"><%= product.description %></textarea>
+
+    <button type="submit">Atualizar</button>
+    <a href="/admin/products/list-all" class="button button-outline">Voltar</a>
+  </form>
+</main>
+
+<script>
+  const update = (event) => {
+    const formData = new FormData(event.target);
+    const formDataJSON = Object.fromEntries(formData);
+
+    console.log(event);
+    console.log(formDataJSON);
+    event.preventDefault();
+
+    fetch(`/api/products/${formDataJSON.id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(formDataJSON),
+    })
+      .then((response) => {
+        console.log(response)
+        if (response.ok) {
+          return response.json()
+        }
+
+        throw new Error(response.statusText)
+      })
+      .then((result) => {
+        swal("Atualizado!", "As informações foram atualizadas", "success");
+      })
+      .catch((error) => {
+        swal("Erro!", "As informações NÃO foram atualizadas.", "error")
+        .then(() => {
+          swal(`Error: {${error}}`);
+        });
+      });
+  };
+
+  document.getElementById('product-form').addEventListener('submit', update);
+</script>
+
+<%- include('../partials/_footer') %>
