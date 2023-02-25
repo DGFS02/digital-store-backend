@@ -1,6 +1,6 @@
 # DIGITAL STORE
 
-### Dependencies
+### Requirements
 
 - Node
 - Mysql
