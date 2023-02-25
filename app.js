@@ -30,6 +30,10 @@ app.get('/milligram/milligram.min.css', function (req, res) {
   res.sendFile(__dirname + '/node_modules/milligram/dist/milligram.min.css');
 });
 
+app.get('/sweet/sweetalert.min.js', function (req, res) {
+  res.sendFile(__dirname + '/node_modules/sweetalert/dist/sweetalert.min.js');
+});
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
