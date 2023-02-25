@@ -67,4 +67,19 @@ router.put('/products/:id', async function (req, res, next) {
   }
 });
 
+/* Rota para deletar o produto*/
+router.delete('/products/:id', async function (req, res, next) {
+  try {
+    const product = await Product.findByPk(req.params.id);
+
+    await product.destroy({ where: { id: req.params.id } });
+
+    res.json('Sucess');
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+    res.json({ error: 'Internal server error', messag: 'Product not deleted by error' });
+  }
+});
+
 module.exports = router;
