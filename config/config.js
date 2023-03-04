@@ -3,7 +3,7 @@ const fs = require('fs');
 const filenv = './.env';
 
 if (!fs.existsSync(filenv)) {
-  throw Error('File .env doesn\'t exist');
+  throw Error("File .env doesn't exist");
 }
 
 module.exports = {
