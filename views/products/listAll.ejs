@@ -22,7 +22,7 @@
 </main>
 
 <script>
-  const loadProductList = () => {
+  const loadProductList = () => {1
     const handleData = (products) => {
       const productListField = document.querySelector('#list-products');
 
@@ -45,11 +45,50 @@
 
         document.querySelectorAll('.delete-product').forEach((element) => {
           element.addEventListener('click', () => {
-            // element.getAttribute('data-item-id')
+            const idElement = element.getAttribute('data-item-id')
+            const itemElement = products.find( item => item.id == idElement )
+
             swal({
-              type: 'success',
-              message: 'asdasdasdasd'
+              title: "Você tem certeza?",
+              text: `Você irá deletar o produto '${itemElement.name}'!`,
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
             })
+            .then((willDelete) => {
+              if (willDelete) {
+                fetch(`/api/products/${idElement}`, {
+                  method: 'DELETE',
+                  headers: {
+                    'content-type': 'application/json',
+                  },
+                })
+                .then((response) => {
+                  
+                  if (response.ok) {
+                    loadProductList()
+                    return response.json()
+                  }
+
+                  throw new Error(response.statusText)
+                })
+                .then((result) => {
+                  swal("Poof! Produto Deletado!!", {
+                    icon: "success",
+                  });
+                })
+                .catch((error) => {
+                  swal("Erro!", "As informações NÃO foram deletadas.", "error")
+                  .then(() => {
+                    swal(`Error: {${error}}`);
+                  });
+                });
+
+                
+              } else {
+                swal("Produto NÃO deletado!");
+              }
+            });
             
           })
         })
