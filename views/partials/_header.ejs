@@ -8,5 +8,36 @@
     <script src="/sweet/sweetalert.min.js" ></script>    
     
   </head>
+
+  <%
+    const urlPath = undefined // TODO
+    const menuItems = [
+      { path: '/admin/products/list-all', label: 'Lista de produtos'},
+      { path: '/admin/products', label: 'Novo produto'},
+      { path: '#', label: 'Lista de usuários'},
+      { path: '#', label: 'Novo usuário'},
+    ]
+  %>
+    
   <body>
-    <div class="container">
+    <header class="header">
+      <h1 class="title-admin">ADMIN</h1>
+    </header>
+    <div class="main-container">
+      <aside class="aside">
+        <nav>
+          <ul>
+            <% menuItems.forEach(item => { %>
+              <li>
+                <a
+                  class="<%= item.path === urlPath ? 'active' : '' %>"
+                  href="<%= item.path %>"
+                >
+                  <%= item.label %>
+                </a>
+              </li>
+            <% }) %>
+          </ul>
+        </nav>
+      </aside>
+      <div class="container main-content">
