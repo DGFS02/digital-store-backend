@@ -5,6 +5,7 @@
   <input type="number" name="price" placeholder="Preço do produto" />
   <input name="description" placeholder="Descrição Produto" />
   <div>
+    <a href="/admin/products/" class="button button-outline">Voltar</a>
     <button type="submit">Cadastrar</button>
   </div>
 </form>
@@ -22,12 +23,21 @@
       },
       body: JSON.stringify(formDataJSON),
     })
-      .then((response) => response.json())
+    .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+
+        throw new Error(response.statusText)
+      })
       .then((result) => {
-        console.log("Success:", result);
+        swal("Criado com sucesso!", "Produto Criado", "success");
       })
       .catch((error) => {
-        console.error("Error:", error);
+        swal("Erro!", "Produto não criado.", "error")
+        .then(() => {
+          swal(`Error: {${error}}`);
+        });
       });
   }
 
