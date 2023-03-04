@@ -1,11 +1,10 @@
 # DIGITAL STORE
 
-### Setup Versions
+### Requirements
 
-- Sequelize CLI:
-  - Node: 16.17.1
-  - CLI: 6.5.2
-  - ORM: 6.3.5
+- Node
+- Mysql
+- Npm
 
 ##### Install dependences
 
@@ -39,4 +38,12 @@ $ npx sequelize-cli db:migrate
 
 ```sh
 $ npm start
+```
+
+##### Seeding
+
+If you want to fill the database with some random data run 
+
+```sh
+$ npx sequelize-cli db:seed:all
 ```
