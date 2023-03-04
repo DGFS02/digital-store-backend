@@ -2,12 +2,12 @@ var express = require('express');
 var router = express.Router();
 var { Product } = require('../models');
 
-router.get('/products', function (req, res, next) {
+router.get('/products/new', function (req, res, next) {
   res.render('products/form', { title: 'Products' });
 });
 
-router.get('/products/list-all', function (req, res, next) {
-  res.render('products/listAll', { title: 'Listagem de Produtos' });
+router.get('/products', function (req, res, next) {
+  res.render('products/list', { title: 'Listagem de Produtos' });
 });
 
 router.get('/products/:id/edit', async function (req, res, next) {
