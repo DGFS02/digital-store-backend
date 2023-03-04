@@ -1,8 +1,65 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Lib Overrides  */
+.swal-button {
+  height: auto;
+  line-height: normal;
 }
 
-a {
-  color: #00B7FF;
+/* End Lib Overrides  */
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  background-color: #666666;
+}
+
+.main-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.aside {
+  width: 10%;
+  min-width: 250px;
+  height: calc(100vh - 60px);
+  background-color: #666666;
+}
+
+.aside nav ul li {
+  list-style: none;
+  margin: 0;
+  width: 100%;
+}
+
+.aside nav ul li a {
+  height: 40px;
+  line-height: 40px;
+  display: block;
+  padding: 0 20px;
+  color: #FFF;
+}
+
+.aside nav ul li a.active,
+.aside nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.title-admin {
+  color: #FFF;
+  font-size: 30px;
+  margin: 0;
+}
+
+.main-content {
+  padding-top: 30px;
+}
+

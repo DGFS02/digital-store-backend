@@ -1,26 +1,63 @@
 <%- include('../partials/_header') %>
 
 <main>
-    <h2> <%= title %> </h2>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Preço</th>
-            </tr>
-        </thead>
+  <h2> <%= title %> </h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
 
-        <tbody>
-            <tr>
-                <td>0</td>
-                <td>Nome teste</td>
-                <td>Preço R$99,99</td>
+    <tbody id="list-products"></tbody>
+  </table>
 
-            </tr>
-        </tbody>
-    </table>
-
+  <button class="button button-clear">Voltar</button>
 </main>
+
+<script>
+  const loadProductList = () => {
+    const handleData = (products) => {
+      const productListField = document.querySelector('#list-products');
+
+      const listProduct = products.map(
+        (product) => ` 
+                <tr> 
+                    <td> ${product.id} </td>
+                    <td> ${caseNull(product.name)} </td>
+                    <td> R$${caseNull(product.price)} </td>
+                    <td> 
+                        <a class="button" href="/admin/products/${product.id}/edit"> Editar </a>
+                        <a class="button button-outline"> Deletar </a>
+                    </td>
+                </tr>
+            `
+      );
+
+      if (products.length > 0) {
+        productListField.innerHTML = listProduct.join('');
+      } else {
+        console.log('Lista de produtos vazia');
+      }
+    };
+
+    fetch('/api/products').then((response) => {
+      response.json().then(handleData);
+    });
+  };
+
+  const caseNull = (data) => {
+    if (data == null) {
+      return ' ---';
+    } else {
+      return data;
+    }
+  };
+
+  loadProductList();
+</script>
 
 <%- include('../partials/_footer') %>

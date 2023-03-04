@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "concurrently \"nodemon ./bin/www\" \"npm run format\"",
+    "format": "onchange \"**/*\" -- prettier --write {{file}}"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -15,10 +16,14 @@
     "milligram": "^1.4.1",
     "morgan": "~1.9.1",
     "mysql2": "^3.0.1",
-    "sequelize": "^6.3.5",
-    "sequelize-cli": "^6.5.2"
+    "sequelize": "^6.28.0",
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20",
+    "onchange": "^7.1.0",
+    "prettier": "^2.8.3",
+    "sequelize-cli": "^6.5.2"
   }
 }
