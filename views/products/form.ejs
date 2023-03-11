@@ -1,48 +1,55 @@
 <%- include('../partials/_header') %>
-<h2>Criação de produtos</h2>
-<form id="product-form">
-   <input name="name" placeholder="Nome do produto" />
-  <input type="number" name="price" placeholder="Preço do produto" />
-  <input name="description" placeholder="Descrição Produto" />
-  <div>
-    <a href="/admin/products/" class="button button-outline">Voltar</a>
-    <button type="submit">Cadastrar</button>
-  </div>
-</form>
-<script>
-  function sendDataForm(event) {
-    console.log(event);
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const formDataJSON = Object.fromEntries(formData);
+  <h2>Criação de produtos</h2>
+  <form id="product-form">
+    <label for="name">Nome do Produto</label>
+    <input id="name" name="name" placeholder="Nome do produto" />
 
-    fetch("/api/products", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(formDataJSON),
-    })
-    .then((response) => {
-        if (response.ok) {
-          return response.json()
-        }
+    <label for="price">Preço do Produto</label>
+    <input id="price" type="number" name="price" placeholder="Preço do produto" />
 
-        throw new Error(response.statusText)
+    <label for="description">Descrição do Produto</label>
+    <input id="description" name="description" placeholder="Descrição Produto" />
+    <div>
+      <a href="/admin/products/" class="button button-outline">Voltar</a>
+      <button type="submit">Cadastrar</button>
+    </div>
+  </form>
+
+  
+  <script>
+    function sendDataForm(event) {
+      console.log(event);
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const formDataJSON = Object.fromEntries(formData);
+
+      fetch("/api/products", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formDataJSON),
       })
-      .then((result) => {
-        swal("Criado com sucesso!", "Produto Criado", "success");
-      })
-      .catch((error) => {
-        swal("Erro!", "Produto não criado.", "error")
-        .then(() => {
-          swal(`Error: {${error}}`);
+        .then((response) => {
+          if (response.ok) {
+            return response.json()
+          }
+
+          throw new Error(response.statusText)
+        })
+        .then((result) => {
+          swal("Criado com sucesso!", "Produto Criado", "success");
+        })
+        .catch((error) => {
+          swal("Erro!", "Produto não criado.", "error")
+            .then(() => {
+              swal(`Error: {${error}}`);
+            });
         });
-      });
-  }
+    }
 
-  document
-    .getElementById("product-form")
-    .addEventListener("submit", sendDataForm);
-</script>
-<%- include('../partials/_footer') %>
+    document
+      .getElementById("product-form")
+      .addEventListener("submit", sendDataForm);
+  </script>
+  <%- include('../partials/_footer') %>

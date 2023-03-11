@@ -1,30 +1,33 @@
 <%- include('../partials/_header') %>
 
-<main>
-  <h2> <%= title %> </h2>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Preço</th>
-        <th>Ação</th>
-      </tr>
-    </thead>
+  <main>
+    <h2>
+      <%= title %>
+    </h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Preço</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
 
-    <tbody id="list-products"></tbody>
-  </table>
+      <tbody id="list-products"></tbody>
+    </table>
 
-  <a class="button" href="/admin/products/new">Criar Produto</a>
-</main>
+    <a class="button" href="/admin/products/new">Criar Produto</a>
+  </main>
 
-<script>
-  const loadProductList = () => {1
-    const handleData = (products) => {
-      const productListField = document.querySelector('#list-products');
+  <script>
+    const loadProductList = () => {
+      1
+      const handleData = (products) => {
+        const productListField = document.querySelector('#list-products');
 
-      const listProduct = products.map(
-        (product) => ` 
+        const listProduct = products.map(
+          (product) => ` 
                 <tr> 
                     <td> ${product.id} </td>
                     <td> ${caseNull(product.name)} </td>
@@ -35,79 +38,79 @@
                     </td>
                 </tr>
             `
-      );
+        );
 
-      if (products.length > 0) {
-        productListField.innerHTML = listProduct.join('');
+        if (products.length > 0) {
+          productListField.innerHTML = listProduct.join('');
 
-        document.querySelectorAll('.delete-product').forEach((element) => {
-          element.addEventListener('click', () => {
-            const idElement = element.getAttribute('data-item-id')
-            const itemElement = products.find( item => item.id == idElement )
+          document.querySelectorAll('.delete-product').forEach((element) => {
+            element.addEventListener('click', () => {
+              const idElement = element.getAttribute('data-item-id')
+              const itemElement = products.find(item => item.id == idElement)
 
-            swal({
-              title: "Você tem certeza?",
-              text: `Você irá deletar o produto '${itemElement.name}'!`,
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-            })
-            .then((willDelete) => {
-              if (willDelete) {
-                fetch(`/api/products/${idElement}`, {
-                  method: 'DELETE',
-                  headers: {
-                    'content-type': 'application/json',
-                  },
-                })
-                .then((response) => {
-                  
-                  if (response.ok) {
-                    loadProductList()
-                    return response.json()
+              swal({
+                title: "Você tem certeza?",
+                text: `Você irá deletar o produto '${itemElement.name}'!`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+                .then((willDelete) => {
+                  if (willDelete) {
+                    fetch(`/api/products/${idElement}`, {
+                      method: 'DELETE',
+                      headers: {
+                        'content-type': 'application/json',
+                      },
+                    })
+                      .then((response) => {
+
+                        if (response.ok) {
+                          loadProductList()
+                          return response.json()
+                        }
+
+                        throw new Error(response.statusText)
+                      })
+                      .then((result) => {
+                        swal("Poof! Produto Deletado!!", {
+                          icon: "success",
+                        });
+                      })
+                      .catch((error) => {
+                        swal("Erro!", "As informações NÃO foram deletadas.", "error")
+                          .then(() => {
+                            swal(`Error: {${error}}`);
+                          });
+                      });
+
+
+                  } else {
+                    swal("Produto NÃO deletado!");
                   }
-
-                  throw new Error(response.statusText)
-                })
-                .then((result) => {
-                  swal("Poof! Produto Deletado!!", {
-                    icon: "success",
-                  });
-                })
-                .catch((error) => {
-                  swal("Erro!", "As informações NÃO foram deletadas.", "error")
-                  .then(() => {
-                    swal(`Error: {${error}}`);
-                  });
                 });
 
-                
-              } else {
-                swal("Produto NÃO deletado!");
-              }
-            });
-            
+            })
           })
-        })
+        } else {
+          console.log('Lista de produtos vazia');
+        }
+      };
+
+      fetch('/api/products').then((response) => {
+        response.json().then(handleData);
+      });
+    };
+
+    const caseNull = (data) => {
+      if (data == null) {
+        return ' ---';
       } else {
-        console.log('Lista de produtos vazia');
+        return data;
       }
     };
 
-    fetch('/api/products').then((response) => {
-      response.json().then(handleData);
-    });
-  };
+    loadProductList();
+  </script>
 
-  const caseNull = (data) => {
-    if (data == null) {
-      return ' ---';
-    } else {
-      return data;
-    }
-  };
-
-  loadProductList();
-</script>
-
-<%- include('../partials/_footer') %>
+  <%- include('../partials/_footer') %>
