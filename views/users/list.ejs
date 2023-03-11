@@ -1,0 +1,64 @@
+<%- include('../partials/_header') %>
+
+<main>
+    <h2> <%= title %> </h2>
+    <table>
+      <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+  
+        <tbody id="list-users"></tbody>
+    </table>
+    
+    <a class="button" href="/admin/users/new">Criar Usuário</a>
+</main>
+
+<%- include('../partials/_footer') %>
+
+<script>
+    const loadUserList = () => {
+        const handleData = (users) => {
+            const usersListField = document.querySelector('#list-users')
+            
+            const listUser = users.map ( (user) => 
+                `
+                    <tr>
+                        <td> ${user.id} </td>
+                        <td> ${caseNull(user.name)} </td>
+                        <td> ${caseNull(user.email)} </td>
+                        <td> ${caseNull(user.role)} </td>
+                    </tr>
+                `
+            )
+            
+            if (users.length > 0) {
+                usersListField.innerHTML = listUser.join('');
+            }
+            else {
+                usersListField.innerHTML = "Nenhum item inserido na lista";
+            }
+        }
+
+        fetch('/api/users').then((response) => {
+            response.json().then(handleData);
+        }); 
+
+
+        
+    }
+
+    const caseNull = (data) => {
+        if (data == null) {
+        return ' ---';
+        } else {
+        return data;
+        }
+    };
+    
+    loadUserList();
+</script>
