@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var { Product, User } = require('../models');
 
-router.get('/users', async (req, res, nes) => {
+router.get('/users', async (req, res, next) => {
   const users = await User.findall();
   res.json(users);
 });
@@ -18,7 +18,7 @@ router.post('/users', function (req, res, next) {
 
   newUser.save();
 
-  res.send('ok');
+  res.json('ok');
 });
 
 router.get('/products', async (req, res, next) => {
