@@ -17,6 +17,10 @@ router.get('/products/:id/edit', async function (req, res, next) {
 });
 
 router.get('/users', function (req, res, next) {
+  res.render('users/list', { title: 'Listagem de Usuários' });
+});
+
+router.get('/users/new', function (req, res, next) {
   res.render('register', { title: 'Cadastro de Usuarios' });
 });
 

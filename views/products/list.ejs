@@ -92,23 +92,23 @@
 
             })
           })
-        } else {
-          console.log('Lista de produtos vazia');
         }
-      };
-
+        else {
+          productListField.innerHTML = "Nenhum item inserido na lista";
+          }
       fetch('/api/products').then((response) => {
         response.json().then(handleData);
       });
     };
-
+    
     const caseNull = (data) => {
       if (data == null) {
         return ' ---';
       } else {
         return data;
-      }
-    };
+        }
+       }
+        
 
     loadProductList();
   </script>
