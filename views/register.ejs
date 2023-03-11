@@ -1,10 +1,18 @@
 <%- include('./partials/_header') %>
   <h2>Registro De Usuário</h2>
   <form id="register-form">
-    <input type="text" name="name" placeholder="Nome Completo" required />
-    <input name="email" placeholder="E-mail" required />
-    <input type="password" name="password" placeholder="Senha" required />
-    <select name="role">
+
+    <label for="name">Nome</label>
+    <input id="name" type="text" name="name" placeholder="Nome Completo" required />
+
+    <label for="email">Email</label>
+    <input id="email" name="email" placeholder="user@xxx.com" required />
+
+    <label for="password">Senha</label>
+    <input id="password" type="password" name="password" placeholder="insira a senha" required />
+
+    <label for="role">Tipo de usuário</label>
+    <select id="role" name="role">
       <option value="user">Cliente</option>
       <option value="adm" selected>Administrador</option>
     </select>
@@ -39,6 +47,5 @@
       .getElementById("register-form")
       .addEventListener("submit", sendDataForm);
   </script>
-  
+
   <%- include('./partials/_footer') %>
-  
