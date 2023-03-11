@@ -9,36 +9,8 @@
       <option value="adm" selected>Administrador</option>
     </select>
     <div>
-      <a href="/admin/users/" class="button button-outline">Voltar</a>
       <button type="submit">Cadastrar</button>
     </div>
   </form>
-  <script>
-    function sendDataForm(event) {
-      console.log(event);
-      event.preventDefault();
-      const formData = new FormData(event.target);
-      const formDataJSON = Object.fromEntries(formData);
-
-      fetch("/api/users", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(formDataJSON),
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          console.log("Success:", result);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    }
-    document
-      .getElementById("register-form")
-      .addEventListener("submit", sendDataForm);
-  </script>
-  
-  <%- include('./partials/_footer') %>
-  
+  <script src="/javascritpt/user-register.js"></script>
+<%- include('./partials/_footer') %>

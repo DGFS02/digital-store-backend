@@ -3,7 +3,7 @@ var router = express.Router();
 var { Product } = require('../models');
 
 router.get('/products/new', function (req, res, next) {
-  res.render('products/form', { title: 'Products' });
+  res.render('products/form', { title: 'Cadastro de Produtos' });
 });
 
 router.get('/products', function (req, res, next) {

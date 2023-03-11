@@ -6,7 +6,6 @@
 
 /* End Lib Overrides  */
 
-
 * {
   margin: 0;
   padding: 0;
@@ -45,7 +44,7 @@
   line-height: 40px;
   display: block;
   padding: 0 20px;
-  color: #FFF;
+  color: #fff;
 }
 
 .aside nav ul li a.active,
@@ -54,7 +53,7 @@
 }
 
 .title-admin {
-  color: #FFF;
+  color: #fff;
   font-size: 30px;
   margin: 0;
 }
@@ -63,3 +62,9 @@
   padding-top: 30px;
 }
 
+/* CSS de validations*/
+
+.error-validation-password {
+  color: red;
+  font-size: 1.6rem;
+}
