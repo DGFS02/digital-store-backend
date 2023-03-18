@@ -35,5 +35,13 @@ jobs:
         run: |
           ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} << EOF
             cd ~/project
-            node server.js
+            touch .env
+            echo "JWT_PRIVATE_KEY=${{ secrets.SERVER_HOST }}" >> .env
+            echo "JWT_PRIVATE_KEY=${{ secrets.SERVER_HOST }}" >> .env
+            echo "JWT_PRIVATE_KEY=${{ secrets.SERVER_HOST }}" >> .env
+            echo "JWT_PRIVATE_KEY=${{ secrets.SERVER_HOST }}" >> .env
+            echo "JWT_PRIVATE_KEY=${{ secrets.SERVER_HOST }}" >> .env
+            npm install
+            npx sequelize-cli db:migrate
+            npm run server
           EOF
