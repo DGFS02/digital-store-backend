@@ -45,5 +45,6 @@ jobs:
             echo "JWT_PRIVATE_KEY=${{ secrets.JWT_PRIVATE_KEY }}" >> .env
             npm install -f
             npx sequelize-cli db:migrate
-            npm run server
+            kill $(ps aux | grep node | grep -v grep | awk '{print $2}')
+            npm run server >> server.log 2>&1 &
           EOF
