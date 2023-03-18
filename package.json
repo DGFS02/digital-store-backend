@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "concurrently \"nodemon ./bin/www\" \"npm run format\"",
-    "format": "onchange \"**/*\" -- prettier --write {{file}}"
+    "format": "onchange \"**/*\" -- prettier --write {{file}}",
+    "server": "node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
