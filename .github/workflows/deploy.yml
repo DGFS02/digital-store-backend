@@ -35,7 +35,7 @@ jobs:
         run: |
           ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} << EOF
             cd ~/project
-            rm env
+            rm .env
             touch .env
             echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
             echo "DB_PASSWORD="${{ secrets.DB_PASSWORD }}" >> .env
