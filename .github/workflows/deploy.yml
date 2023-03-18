@@ -43,5 +43,5 @@ jobs:
             echo "JWT_PRIVATE_KEY=${{ secrets.SERVER_HOST }}" >> .env
             npm install -f
             npm run server
-            npx sequelize-cli db:migrate
+            # npx sequelize-cli db:migrate
           EOF
