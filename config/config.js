@@ -8,11 +8,11 @@ if (!fs.existsSync(filenv)) {
 
 module.exports = {
   development: {
-    username: process.env.DB_UserName,
-    password: process.env.DB_Password,
-    database: process.env.DB_Database,
-    host: process.env.DB_Host,
-    dialect: process.env.DB_Dialect,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT,
   },
   test: {
     username: 'root',
