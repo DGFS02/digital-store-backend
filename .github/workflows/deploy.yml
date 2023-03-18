@@ -46,5 +46,5 @@ jobs:
             npm install -f
             npx sequelize-cli db:migrate
             kill $(ps aux | grep node | grep -v grep | awk '{print $2}')
-            npm run server >> server.log 2>&1 &
+            sudo PORT=80 npm run server >> server.log 2>&1 &
           EOF
