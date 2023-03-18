@@ -35,13 +35,15 @@ jobs:
         run: |
           ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} << EOF
             cd ~/project
+            rm env
             touch .env
-            echo "JWT_PRIVATE_KEY=${{ secrets.SERVER_HOST }}" >> .env
-            echo "JWT_PRIVATE_KEY=${{ secrets.SERVER_HOST }}" >> .env
-            echo "JWT_PRIVATE_KEY=${{ secrets.SERVER_HOST }}" >> .env
-            echo "JWT_PRIVATE_KEY=${{ secrets.SERVER_HOST }}" >> .env
-            echo "JWT_PRIVATE_KEY=${{ secrets.SERVER_HOST }}" >> .env
+            echo "DB_USERNAME="${{ secrets.DB_USERNAME }}" >> .env
+            echo "DB_PASSWORD="${{ secrets.DB_PASSWORD }}" >> .env
+            echo "DB_DATABASE="${{ secrets.DB_DATABASE }}" >> .env
+            echo "DB_HOST="${{ secrets.DB_HOST }}.freemysqlhosting.net" >> .env
+            echo "DB_DIALECT="${{ secrets.DB_DIALECT }}" >> .env
+            echo "JWT_PRIVATE_KEY="${{ secrets.JWT_PRIVATE_KEY }}" >> .env
             npm install -f
+            npx sequelize-cli db:migrate
             npm run server
-            # npx sequelize-cli db:migrate
           EOF
